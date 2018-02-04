@@ -1,0 +1,26 @@
+//this is the file from mr Pieter gave to me for add button multiplexer
+
+#include <MIDI_Controller.h> // Include the library
+
+const pin_t muxPin = 5;
+
+AnalogMultiplex multiplexer(muxPin, { 2, 3, 4 } );
+
+Digital buttons[] = {
+  {multiplexer.pin(0), 0x10, 1},
+  {multiplexer.pin(1), 0x10, 2},
+  {multiplexer.pin(2), 0x10, 3},
+  {multiplexer.pin(3), 0x10, 4},
+  {multiplexer.pin(4), 0x10, 5},
+  {multiplexer.pin(5), 0x10, 6},
+  {multiplexer.pin(6), 0x10, 7},
+  {multiplexer.pin(7), 0x10, 8}
+};
+
+void setup() {
+  ::pinMode(muxPin, INPUT_PULLUP);
+}
+
+void loop() {
+  MIDI_Controller.refresh();
+}
